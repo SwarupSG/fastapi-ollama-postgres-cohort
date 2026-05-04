@@ -54,7 +54,7 @@ The current `README.md` is the course's per-module README. Replace it with your 
 ```markdown
 # Local LLM Question Log
 
-A small FastAPI web app that asks a locally-running LLM (Ollama with `llama3.2`) a question and persists the conversation history in Postgres. Built as the capstone of the SCTP Local LLM Question Log course.
+A small FastAPI web app that asks a locally-running LLM (Ollama with `llama3.2`) a question and persists the conversation history in Postgres. Built as the capstone of the Local LLM Question Log course.
 
 ## What it does
 
@@ -123,7 +123,7 @@ gh repo create <your-repo-name> \
   --public \
   --source=. \
   --remote=origin \
-  --description "FastAPI + Ollama + Postgres question log — capstone of the SCTP course"
+  --description "FastAPI + Ollama + Postgres question log — capstone of the Local LLM Question Log course"
 
 git push -u origin main
 ```
@@ -134,7 +134,7 @@ If `gh` isn't installed, use Option B.
 
 1. Go to <https://github.com/new>.
 2. **Repository name:** `<your-repo-name>` (your choice).
-3. **Description:** *"FastAPI + Ollama + Postgres question log — capstone of the SCTP course"*
+3. **Description:** *"FastAPI + Ollama + Postgres question log — capstone of the Local LLM Question Log course"*
 4. **Visibility:** Public.
 5. **Initialize this repository with:** leave **all three checkboxes unchecked** — you already have files locally; checking them creates a merge conflict.
 6. Click **Create repository**.

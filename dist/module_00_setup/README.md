@@ -22,7 +22,9 @@ From this folder, in a terminal inside Antigravity:
 python3.11 -m venv venv
 source venv/bin/activate          # Windows: venv\Scripts\Activate.ps1
 pip install -r requirements.txt   # empty in Module 0; teaches the muscle
-createdb llm_question_log         # macOS/Linux. Windows: see PRD §12a
+createdb llm_question_log         # macOS / Linux
+# Windows (PowerShell, after Postgres install + PATH update):
+#   createdb -U postgres llm_question_log
 psql -d llm_question_log -f sql/001_create_interactions.sql
 ```
 

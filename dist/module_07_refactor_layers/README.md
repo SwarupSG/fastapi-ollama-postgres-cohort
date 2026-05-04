@@ -35,11 +35,9 @@ uvicorn app.main:app --reload
 
 ## Verify (self-check)
 
-Run every Module 6 verification — all responses must be byte-identical to Module 6. The structural diff is the proof we're done (run from the master repo if you have it; from the cohort repo, just visually compare the two folders):
+Run every Module 6 verification — all responses must be byte-identical to Module 6. The structural diff is the proof we're done. Open `dist/module_06_read_history/app/` and `dist/module_07_refactor_layers/app/` side by side in your editor. Same behaviour, different shape — that's the lesson.
 
-```bash
-git diff --stat v1-module-6-complete v1-module-7-complete -- app/
-```
+(Maintainer aside: if you have the source-of-truth tag history in your clone, `git diff --stat v1-module-6-complete v1-module-7-complete -- app/` shows the same picture as a stat summary.)
 
 ## Ask Gemini
 

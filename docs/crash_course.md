@@ -88,9 +88,9 @@ Each module's working app is tagged in the git repo (`v1-module-N-complete`) and
 
 ## Choosing an IDE and an AI partner
 
-This course was originally designed for **Google Antigravity** + **Gemini** — an agent-first IDE where the AI lives in a chat panel as a learning partner. The repo includes a `.agents/rules/doctrine.md` file that shapes how Gemini behaves in this project (it coaches rather than solving, refuses to jump ahead modules, and pushes back on doctrine-violating code).
+This course was originally designed for **Google Antigravity** + **Gemini** — an agent-first IDE where the AI lives in a chat panel as a learning partner. The repo includes a `AGENTS.md` file that shapes how Gemini behaves in this project (it coaches rather than solving, refuses to jump ahead modules, and pushes back on doctrine-violating code).
 
-**You don't have to use Antigravity.** The course works in any editor. If you're using VS Code with Copilot, Cursor with Claude, JetBrains, or even plain Vim — pick the one you have. The principles in `.agents/rules/doctrine.md` are written for Gemini but read as a perfectly good system prompt you can paste into Claude or ChatGPT to get similar coaching behavior from those tools.
+**You don't have to use Antigravity.** The course works in any editor. If you're using VS Code with Copilot, Cursor with Claude, JetBrains, or even plain Vim — pick the one you have. The principles in `AGENTS.md` are written for Gemini but read as a perfectly good system prompt you can paste into Claude or ChatGPT to get similar coaching behavior from those tools.
 
 What does matter:
 
@@ -1147,7 +1147,7 @@ You don't need any of these for our course. But once you know they exist, you'll
 
 If you're using Claude, ChatGPT, Cursor, or Antigravity as your AI partner, what you just built is exactly how those tools work too. There is a system prompt — written by Anthropic / OpenAI / Google — that shapes every conversation you have with them. You can usually find a published version on their developer documentation pages. Read one. Notice the shape. The thing you just learned to write for `llama3.2` is the production version of what's been guiding every chat you've ever had with an AI assistant.
 
-If you're using Antigravity specifically, this repo has a file called `.agents/rules/doctrine.md` — that's the system prompt for the Gemini sessions in this project. Open it. It's the actual production thing.
+If you're using Antigravity specifically, this repo has a file called `AGENTS.md` — that's the system prompt for the Gemini sessions in this project. Open it. It's the actual production thing.
 
 ### Verify
 
