@@ -99,6 +99,7 @@ For everything else: paste the failing line into the Gemini chat panel — `AGEN
 - **How Gemini is coached to behave in this course:** [`AGENTS.md`](../AGENTS.md) at the cohort root.
 - **The full narrative walkthrough, module by module:** the crash-course PDF you received with the course materials.
 - **Publishing your V1 at the end:** [`publish_your_work.md`](publish_your_work.md).
+- **The written "explain it yourself" assignment (one explanation per module):** [`explain_it_yourself.md`](explain_it_yourself.md). Do it right after each module — the written companion to Defend-It.
 
 ---
 
