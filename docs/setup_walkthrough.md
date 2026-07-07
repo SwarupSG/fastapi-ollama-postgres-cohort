@@ -1,6 +1,6 @@
 # Setup Walkthrough — the deep companion to Before Class
 
-This is the **hand-holding** install guide. If you've installed Python and Postgres before and just want a checklist, use [`before_class.md`](before_class.md) — it's the scannable version. If you're new to development tooling, read this top-to-bottom. Every step has an "expected output" line so you can tell whether it actually worked before moving on.
+This is the **hand-holding** install guide. If you've installed Python and Postgres before and just want a checklist, use [`module5-readiness-checklist.md`](module5-readiness-checklist.md) — it's the scannable version. If you're new to development tooling, read this top-to-bottom. Every step has an "expected output" line so you can tell whether it actually worked before moving on.
 
 This doc covers two back-to-back courses:
 
@@ -599,7 +599,7 @@ Bedtime-specific database setup, schema, `.env` file, and Gemini API key are han
 
 ### 9.5 Gemini API key — created live in class
 
-We create the bedtime course's Gemini API key together in the first bedtime session. Step-by-step is in `before_class.md` §7 if you want to refresh later.
+We create the bedtime course's Gemini API key together in the first bedtime session. Step-by-step is in `module5-readiness-checklist.md` §8 if you want to refresh later.
 
 ### 9.6 The Module 7 deploy walkthrough — live in class + PDF reference
 
