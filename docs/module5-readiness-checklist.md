@@ -94,42 +94,49 @@ Antigravity is Google's **agent-first IDE** with **Gemini** in the chat panel. T
 *Any of **3.11 / 3.12 / 3.13** works. **Do not use 3.14** (some packages don't publish wheels for it yet, and the setup check only accepts 3.11–3.13). If you already have 3.11/3.12/3.13, **keep it — don't downgrade.***
 
 **macOS**
-- [ ] `brew install python@3.12`
-- [ ] Verify: `python3 --version` → `3.11.x`, `3.12.x`, or `3.13.x`
+
+1. `brew install python@3.12`
+2. Verify: `python3 --version` → `3.11.x`, `3.12.x`, or `3.13.x`
 
 **Ubuntu / WSL2**
-- [ ] `sudo apt update && sudo apt install -y python3 python3-venv python3-pip`
-- [ ] Verify: `python3 --version` → `3.11.x`, `3.12.x`, or `3.13.x` *(Ubuntu 24.04 ships 3.12 by default)*
-- [ ] **PEP 668:** Ubuntu blocks `pip install` *outside* a virtual environment by design. You'll always work inside a `venv` — exactly what the course teaches.
+
+1. `sudo apt update && sudo apt install -y python3 python3-venv python3-pip`
+2. Verify: `python3 --version` → `3.11.x`, `3.12.x`, or `3.13.x` *(Ubuntu 24.04 ships 3.12 by default)*
+
+*PEP 668: Ubuntu blocks `pip install` outside a virtual environment by design — you'll always work inside a `venv`, exactly what the course teaches.*
 
 ### 6.2 Postgres 17
 
 *Postgres 16 or 18 also work; 17 is what the course assumes.*
 
 **macOS**
-- [ ] `brew install postgresql@17`
-- [ ] `brew services start postgresql@17`
-- [ ] `psql -d postgres -c "CREATE USER postgres WITH PASSWORD 'postgres' SUPERUSER;"`
-- [ ] Verify: `pg_isready -h localhost` → `accepting connections`
 
-**Ubuntu / WSL2** (run one line at a time)
-- [ ] `sudo apt install -y postgresql-common`
-- [ ] `sudo /usr/share/postgresql-common/pgdg/apt.postgresql.org.sh` *(interactive — press **Enter** when prompted)*
-- [ ] `sudo apt install -y postgresql-17`
-- [ ] `sudo systemctl start postgresql && sudo systemctl enable postgresql`
-- [ ] `sudo -u postgres psql -c "ALTER USER postgres WITH PASSWORD 'postgres';"`
-- [ ] Verify: `pg_isready -h localhost` → `accepting connections`
+1. `brew install postgresql@17`
+2. `brew services start postgresql@17`
+3. `psql -d postgres -c "CREATE USER postgres WITH PASSWORD 'postgres' SUPERUSER;"`
+4. Verify: `pg_isready -h localhost` → `accepting connections`
+
+**Ubuntu / WSL2** — run one step at a time:
+
+1. `sudo apt install -y postgresql-common`
+2. `sudo /usr/share/postgresql-common/pgdg/apt.postgresql.org.sh` *(interactive — press **Enter** when prompted)*
+3. `sudo apt install -y postgresql-17`
+4. `sudo systemctl start postgresql && sudo systemctl enable postgresql`
+5. `sudo -u postgres psql -c "ALTER USER postgres WITH PASSWORD 'postgres';"`
+6. Verify: `pg_isready -h localhost` → `accepting connections`
 
 ### 6.3 Ollama + the `llama3.2` model
 
 **macOS**
-- [ ] Download the `.dmg` from https://ollama.com/download (needs macOS 14 Sonoma+), drag to Applications, open it.
-- [ ] `ollama pull llama3.2` (~2 GB download)
+
+1. Download the `.dmg` from https://ollama.com/download (needs macOS 14 Sonoma+), drag to Applications, open it.
+2. `ollama pull llama3.2` (~2 GB download)
 
 **Ubuntu / WSL2**
-- [ ] Install: `curl -fsSL https://ollama.com/install.sh | sh`
-- [ ] Start: `sudo systemctl start ollama && sudo systemctl enable ollama`
-- [ ] `ollama pull llama3.2` (~2 GB download)
+
+1. Install: `curl -fsSL https://ollama.com/install.sh | sh`
+2. Start: `sudo systemctl start ollama && sudo systemctl enable ollama`
+3. `ollama pull llama3.2` (~2 GB download)
 
 **Both — verify:**
 ```bash
@@ -148,7 +155,9 @@ curl -s -X POST http://localhost:11434/api/chat \
 ### 6.5 GitHub CLI (`gh`) — Antigravity uses it to push and pull
 
 **macOS**
-- [ ] `brew install gh`  → verify `gh --version`
+
+1. `brew install gh`
+2. Verify: `gh --version`
 
 **Ubuntu / WSL2** — install from the official GitHub CLI repository (copy the whole block):
 ```bash
@@ -160,7 +169,7 @@ sudo mkdir -p -m 755 /etc/apt/keyrings \
      | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
   && sudo apt update && sudo apt install -y gh
 ```
-- [ ] Verify: `gh --version`. *(If this block errors, see `setup_walkthrough.md` — the `gh` keyring path is a known 2026 gotcha.)*
+Then verify: `gh --version`. *(If this block errors, see `setup_walkthrough.md` — the `gh` keyring path is a known 2026 gotcha.)*
 
 ## 7. Connect Antigravity to GitHub (so Gemini can push/pull from chat)
 
@@ -211,16 +220,18 @@ sudo mkdir -p -m 755 /etc/apt/keyrings \
 *Bedtime course only.*
 
 **Render ↔ GitHub**
-- [ ] Sign in — https://dashboard.render.com
-- [ ] Top right: **+ New → Web Service**
-- [ ] Click the **GitHub** card → approve the OAuth permissions
-- [ ] Back out (no deploy yet)
+
+1. Sign in — https://dashboard.render.com
+2. Top right: **+ New → Web Service**
+3. Click the **GitHub** card → approve the OAuth permissions
+4. Back out (no deploy yet)
 
 **Vercel ↔ GitHub**
-- [ ] Sign in — https://vercel.com/dashboard
-- [ ] Top right: **Add New → Project**
-- [ ] Click **Install** under the GitHub heading → approve the OAuth permissions
-- [ ] Back out (no project yet)
+
+1. Sign in — https://vercel.com/dashboard
+2. Top right: **Add New → Project**
+3. Click **Install** under the GitHub heading → approve the OAuth permissions
+4. Back out (no project yet)
 
 ## 10. Final check (the night before the first session)
 
