@@ -288,6 +288,6 @@ mkdir -p ~/code && cd ~/code
 
 ## 12. If anything fails
 
-1. In Antigravity, paste the **failing command and its error** into the Gemini chat panel. `AGENTS.md` is loaded at the cohort root, so Gemini knows the course's friction points and will walk you through the fix.
-2. If Gemini's fix doesn't work, post a **screenshot** of the failing command and error in the cohort **async help channel**.
+1. **Paste the failing command and its full error into an AI app** — use whichever you're comfortable with (Claude, ChatGPT, Gemini, or Perplexity — you installed all four in §3). Most setup errors (Homebrew, apt, WSL2, Postgres) are common, and an AI will walk you through the fix. *Once Antigravity is set up, prefer its built-in Gemini for anything repo-specific — it loads `AGENTS.md` at the cohort root, so it's **course-aware** and knows this course's exact friction points. But don't wait on that if you haven't used Antigravity yet — any AI app is fine for setup errors.*
+2. If the AI's fix doesn't work, post a **screenshot** of the failing command and error in the cohort **async help channel**.
 3. The live session is the **last resort** — arrive ready.
