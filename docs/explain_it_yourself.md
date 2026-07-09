@@ -6,6 +6,8 @@ The goal is *not* to describe every line. A senior developer reading new code do
 
 Do this right after you finish each module, while it's fresh — it takes about five minutes.
 
+> **How this is handed in.** This is a **graded assignment**. Your instructor gives you an editable copy — **`explain_it_yourself.docx`** — on the learning portal. Open it in **Word, Google Docs, or Pages**, fill in all eight modules (paste each load-bearing line straight from Antigravity), and **upload the completed `.docx` back to the portal as a single submission** by the deadline. The sections in the DOCX are identical to the ones below.
+
 ---
 
 ## What a good answer looks like
@@ -106,4 +108,4 @@ For every module, answer these five:
 
 ---
 
-**Submitting:** keep this file with your answers in your own cohort folder and bring it to office hours, or submit however your instructor asked. It's also a genuinely useful revision sheet later — eight modules, eight sentences, the whole app.
+**Submitting — one upload, all eight modules.** When every module above is filled in, **upload this completed document (`explain_it_yourself.docx`) to the learning portal** as your single submission. Open it in Word, Google Docs, or Pages; type your answers; save; upload. (It also doubles as your own revision sheet later — eight modules, eight sentences, the whole app.)
