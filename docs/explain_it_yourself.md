@@ -1,111 +1,120 @@
 # Explain It Yourself — Written Assignment
 
-You've been answering **Defend-It** out loud. This is the written version: **one short explanation per module, in your own words.**
+You've been answering **Defend-It** out loud. This is the short written version.
 
-The goal is *not* to describe every line. A senior developer reading new code doesn't explain all 25 lines — they find the **one line that is the point of the module** and explain that. That's the skill you're practising here: separating the signal from the scaffolding.
+Every module is really built around **one key line** — the line that *is* the new idea; everything else is scaffolding. **We give you that line for each module. Your job is simply to explain what it does, in your own words** — the way you'd explain it to a classmate who's stuck.
 
-Do this right after you finish each module, while it's fresh — it takes about five minutes.
+That's the whole assignment: read the line, understand it, explain it. Eight lines, eight short explanations.
 
-> **How this is handed in.** This is a **graded assignment**. Your instructor gives you an editable copy — **`explain_it_yourself.docx`** — on the learning portal. Open it in **Word, Google Docs, or Pages**, fill in all eight modules (paste each load-bearing line straight from Antigravity), and **upload the completed `.docx` back to the portal as a single submission** by the deadline. The sections in the DOCX are identical to the ones below.
-
----
-
-## What a good answer looks like
-
-- **It names one line.** Not the whole file — the single line (or tiny block) that *is* this module's new idea. If you can't pick one, you haven't found the fundamental yet — re-read, or ask Gemini "which one line is the point of this module?"
-- **It's in your own words.** Don't paste the README's sentence back. Explain it the way you'd explain it to the next person in the cohort who's stuck.
-- **It would make sense to someone who hasn't seen the code.** That's the test.
-
-You may use Gemini to *check* your explanation ("is this right?") — but write your version first. The point is that *you* generate it.
+> **How this is handed in.** This is a **graded assignment**. Your instructor gives you an editable copy — **`explain_it_yourself.docx`** — on the learning portal. Fill it in (Word, Google Docs, or Pages) and **upload the completed `.docx` back to the portal** as a single submission by the deadline.
 
 ---
 
-## How the hints fade
+## What a good explanation looks like
 
-Early modules give you a hint about where to look. From Module 4 on, the hints get lighter; by Modules 7–8 there's no hint at all — finding the load-bearing line yourself *is* the assignment. That's deliberate: by the end you're doing unaided what the instructor demonstrated at the start.
+- **In your own words** — don't copy the README back. Explain it like you're helping a classmate.
+- **Say what it does *and* why it matters** — what would be missing or broken without this line?
+- **2–4 sentences is plenty.** Short and clear beats long.
 
-For every module, answer these five:
-
-1. **The one line I think is load-bearing** (paste it, with `file:line`):
-2. **What it does, in my own words** (2–3 sentences):
-3. **What I predicted before running vs. what actually happened:**
-4. **Why is it written this way — and what would a typical tutorial add here that we deliberately did *not*?**
-5. **My Defend-It answer** (the question at the bottom of the module's README):
+You may ask Gemini to *check* your explanation ("is this right?") — but write your own version first.
 
 ---
 
 ## Module 01 — Hello FastAPI
-*Hint: look for the line that connects a web address (a URL) to a Python function.*
 
-1.
-2.
-3.
-4.
-5.
+```python
+@app.get("/", response_class=HTMLResponse)   # app/main.py
+def index(request: Request):
+    ...
+```
+
+**Your explanation (2–4 sentences):**
+
+
 
 ## Module 02 — Post + Pydantic Echo
-*Hint: look at what the `ask` function receives. One small piece of that line is doing a lot of invisible work.*
 
-1.
-2.
-3.
-4.
-5.
+```python
+def ask(payload: AskRequest):   # app/main.py
+```
+
+*Focus on `payload: AskRequest` — the type written after the colon.*
+
+**Your explanation (2–4 sentences):**
+
+
 
 ## Module 03 — Call Ollama
-*Hint: find the line where your app stops talking to itself and starts talking to another program.*
 
-1.
-2.
-3.
-4.
-5.
+```python
+r = client.post(OLLAMA_URL, json={"model": OLLAMA_MODEL, "messages": [...], "stream": False})   # app/main.py
+```
+
+**Your explanation (2–4 sentences):**
+
+
 
 ## Module 04 — System Prompt
-*Lighter hint: something new was added to the list of messages sent to the model. What, and where?*
 
-1.
-2.
-3.
-4.
-5.
+```python
+{"role": "system", "content": SYSTEM_PROMPT},   # app/main.py — added to the messages list
+```
+
+**Your explanation (2–4 sentences):**
+
+
 
 ## Module 05 — Save to Postgres
-*Lighter hint: one line makes this the first module where closing the app doesn't lose your data.*
 
-1.
-2.
-3.
-4.
-5.
+```python
+cur.execute(
+    "INSERT INTO interactions (question, answer, model_name) VALUES (%s, %s, %s)",
+    (question, answer, OLLAMA_MODEL),
+)   # app/main.py
+```
+
+**Your explanation (2–4 sentences):**
+
+
 
 ## Module 06 — Read History
-*Lighter hint: the "write" verb from Module 5 has a "read" counterpart. Find it.*
 
-1.
-2.
-3.
-4.
-5.
+```python
+cur.execute(
+    "SELECT ... FROM interactions ORDER BY id DESC LIMIT %s",
+    (limit,),
+)   # app/main.py
+```
+
+**Your explanation (2–4 sentences):**
+
+
 
 ## Module 07 — Refactor into Layers
-*No hint. But a warning: the diff is big and nothing the app DOES has changed. So your "load-bearing line" question is different here — what got shorter, and why is that the point?*
 
-1.
-2.
-3.
-4.
-5.
+The app does exactly what Module 6 did — but the `ask` function became tiny:
+
+```python
+answer = call_ollama(question)        # app/main.py
+save_interaction(question, answer)
+```
+
+*Nothing the app DOES changed. Explain what changed instead — and why that's worth doing.*
+
+**Your explanation (2–4 sentences):**
+
+
 
 ## Module 08 — Configuration
-*No hint. Find the line that decides where a critical setting comes from — and what happens when it's missing.*
 
-1.
-2.
-3.
-4.
-5.
+```python
+DATABASE_URL = os.environ["DATABASE_URL"]   # app/database.py
+```
+
+**Your explanation (2–4 sentences):**
+
+
 
 ---
 
-**Submitting — one upload, all eight modules.** When every module above is filled in, **upload this completed document (`explain_it_yourself.docx`) to the learning portal** as your single submission. Open it in Word, Google Docs, or Pages; type your answers; save; upload. (It also doubles as your own revision sheet later — eight modules, eight sentences, the whole app.)
+**Submitting — one upload, all eight modules.** When every module is filled in, **upload this completed document (`explain_it_yourself.docx`) to the learning portal** as your single submission. It also doubles as your own revision sheet later — eight lines, the whole app.
