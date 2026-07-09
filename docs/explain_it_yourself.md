@@ -2,9 +2,9 @@
 
 You've been answering **Defend-It** out loud. This is the short written version.
 
-Every module is really built around **one key line** — the line that *is* the new idea; everything else is scaffolding. For each module below we show you a small slice of the real code, with that key line marked **`# ← EXPLAIN THIS LINE`**. **Your job is to explain what the marked line does, in your own words** — the way you'd explain it to a classmate who's stuck.
+Every module is really built around **one key line** — the line that *is* the new idea; everything else is scaffolding. For each module below we show you a small slice of the real code for context, and then name the key line in bold under it (**"Explain this line"**). **Your job is to explain what that line does, in your own words** — the way you'd explain it to a classmate who's stuck.
 
-The full file for each module is in your cohort folder (the path is in the comment at the top of each snippet) — open it in Antigravity if you want the whole picture. That's the whole assignment: read the marked line in context, understand it, explain it. Eight lines, eight short explanations.
+The full file for each module is in your cohort folder (the path is in the comment at the top of each snippet) — open it in Antigravity if you want the whole picture. That's the whole assignment: read the line in context, understand it, explain it. Eight lines, eight short explanations.
 
 > **How this is handed in.** This is a **graded assignment**. Your instructor gives you an editable copy — **`explain_it_yourself.docx`** — on the learning portal. Fill it in (Word, Google Docs, or Pages) and **upload the completed `.docx` back to the portal** as a single submission by the deadline.
 
@@ -26,10 +26,12 @@ You may ask Gemini to *check* your explanation ("is this right?") — but write 
 # app/main.py   (full file: dist/module_01_hello_fastapi/app/main.py)
 app = FastAPI(title="Local LLM Question Log")
 # ...
-@app.get("/", response_class=HTMLResponse)   # ← EXPLAIN THIS LINE
+@app.get("/", response_class=HTMLResponse)   # ← the line to explain
 def index(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 ```
+
+**→ Explain this line:** `@app.get("/", response_class=HTMLResponse)`
 
 **Your explanation (2–4 sentences):**
 
@@ -43,12 +45,14 @@ class AskRequest(BaseModel):
     question: str
 
 @app.post("/ask", response_model=AskResponse)
-def ask(payload: AskRequest):   # ← EXPLAIN THIS LINE  (focus on `payload: AskRequest`)
+def ask(payload: AskRequest):   # ← the line to explain
     question = payload.question.strip()
     if not question:
         raise HTTPException(status_code=400, detail="Please enter a question.")
     return AskResponse(answer=f"You asked: {question}")
 ```
+
+**→ Explain this line:** `def ask(payload: AskRequest):` — especially the `payload: AskRequest` type hint.
 
 **Your explanation (2–4 sentences):**
 
@@ -59,13 +63,15 @@ def ask(payload: AskRequest):   # ← EXPLAIN THIS LINE  (focus on `payload: Ask
 ```python
 # app/main.py — inside ask()   (full file: dist/module_03_call_ollama/app/main.py)
     with httpx.Client(timeout=60.0) as client:
-        r = client.post(OLLAMA_URL, json={   # ← EXPLAIN THIS LINE
+        r = client.post(OLLAMA_URL, json={   # ← the line to explain
             "model": OLLAMA_MODEL,
             "messages": [{"role": "user", "content": question}],
             "stream": False,
         })
         answer = r.json()["message"]["content"]
 ```
+
+**→ Explain this line:** `r = client.post(OLLAMA_URL, json={ ... })`
 
 **Your explanation (2–4 sentences):**
 
@@ -82,10 +88,12 @@ SYSTEM_PROMPT = (
 )
 # ... later, in the call to the model:
             "messages": [
-                {"role": "system", "content": SYSTEM_PROMPT},   # ← EXPLAIN THIS LINE
+                {"role": "system", "content": SYSTEM_PROMPT},   # ← the line to explain
                 {"role": "user", "content": question},
             ],
 ```
+
+**→ Explain this line:** `{"role": "system", "content": SYSTEM_PROMPT}`
 
 **Your explanation (2–4 sentences):**
 
@@ -98,12 +106,14 @@ SYSTEM_PROMPT = (
     with psycopg.connect(DATABASE_URL) as conn:
         with conn.cursor() as cur:
             cur.execute(
-                "INSERT INTO interactions (question, answer, model_name) "   # ← EXPLAIN THIS LINE
+                "INSERT INTO interactions (question, answer, model_name) "   # ← the line to explain
                 "VALUES (%s, %s, %s)",
                 (question, answer, OLLAMA_MODEL),
             )
         conn.commit()
 ```
+
+**→ Explain this line:** the `cur.execute("INSERT INTO interactions ...")` call.
 
 **Your explanation (2–4 sentences):**
 
@@ -117,13 +127,15 @@ def fetch_recent_history(limit: int = 10) -> list[Interaction]:
     with psycopg.connect(DATABASE_URL) as conn:
         with conn.cursor(row_factory=dict_row) as cur:
             cur.execute(
-                "SELECT id, question, answer, model_name, "   # ← EXPLAIN THIS LINE
+                "SELECT id, question, answer, model_name, "   # ← the line to explain
                 "       to_char(created_at, 'YYYY-MM-DD HH24:MI:SS') AS created_at "
                 "FROM interactions ORDER BY id DESC LIMIT %s",
                 (limit,),
             )
             return [Interaction(**row) for row in cur.fetchall()]
 ```
+
+**→ Explain this line:** the `cur.execute("SELECT ... FROM interactions ORDER BY id DESC LIMIT %s")` call.
 
 **Your explanation (2–4 sentences):**
 
@@ -143,12 +155,12 @@ def ask(payload: AskRequest):
     question = payload.question.strip()
     if not question:
         raise HTTPException(status_code=400, detail="Please enter a question.")
-    answer = call_ollama(question)      # ← EXPLAIN THESE TWO LINES
-    save_interaction(question, answer)  # ← (compare with Module 6's long ask())
+    answer = call_ollama(question)      # ← the lines to explain
+    save_interaction(question, answer)  # ←
     return AskResponse(answer=answer, history=fetch_recent_history())
 ```
 
-*Nothing the app DOES changed. Explain what changed instead — and why that's worth doing.*
+**→ Explain these two lines:** `answer = call_ollama(question)` and `save_interaction(question, answer)` — and why the whole `ask()` function got so short. *(Nothing the app DOES changed — explain what changed instead, and why it's worth doing.)*
 
 **Your explanation (2–4 sentences):**
 
@@ -162,13 +174,15 @@ import os
 import psycopg
 from contextlib import contextmanager
 
-DATABASE_URL = os.environ["DATABASE_URL"]   # ← EXPLAIN THIS LINE
+DATABASE_URL = os.environ["DATABASE_URL"]   # ← the line to explain
 
 @contextmanager
 def get_conn():
     with psycopg.connect(DATABASE_URL) as conn:
         yield conn
 ```
+
+**→ Explain this line:** `DATABASE_URL = os.environ["DATABASE_URL"]`
 
 **Your explanation (2–4 sentences):**
 
